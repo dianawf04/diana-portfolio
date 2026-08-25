@@ -3,10 +3,10 @@ export const DATA = {
   initials: "DW",
   location: "Surabaya, Indonesia",
 
-  role: "Informatika",
+  role: "Web Developer",
 
   description:
-    "Saya Diana, berfokus pada pengembangan website dan sistem informasi. Saya membangun aplikasi yang mengutamakan fungsionalitas, tampilan yang modern, dan pengalaman pengguna yang nyaman.",
+    "Lulusan Informatika yang berfokus pada pengembangan website dan sistem informasi. Saya membangun aplikasi web yang fungsional, responsif, dan terstruktur dengan memperhatikan kebutuhan pengguna serta pengalaman pengguna yang baik.",
 
   // Kontak dan Sosial Media
   contact: {

@@ -1,90 +1,107 @@
 import { Reveal } from "@/components/animations/Reveal";
-import { Code2, Database, Layout, Server, Terminal } from "lucide-react";
+import { Code2 } from "lucide-react";
 
-const SKILLS_DATA = [
+const SKILL_CATEGORIES = [
   {
+    num: "01",
     title: "Backend Development",
-    icon: Server,
-    description: "Membangun logika server dan arsitektur sistem yang kokoh.",
-    skills: ["PHP", "Laravel 12", "RESTful API", "Middleware", "Routing"],
+    subtitle: "Server Architecture & Logic",
+    skills: ["PHP", "Laravel", "RESTful API", "Middleware", "Routing"],
   },
   {
+    num: "02",
     title: "Database Management",
-    icon: Database,
-    description: "Merancang dan mengelola penyimpanan data yang efisien.",
-    skills: ["MySQL", "Relational Database", "Query Optimization", "Migrations"],
+    subtitle: "Relational Modeling & Storage",
+    skills: ["MySQL", "Relational Database", "Migrations"],
   },
   {
+    num: "03",
     title: "Frontend & UI",
-    icon: Layout,
-    description: "Menerjemahkan desain menjadi antarmuka yang responsif dan interaktif.",
-    skills: ["Tailwind CSS", "Blade Views", "Next.js", "React", "HTML/CSS"],
+    subtitle: "Interactive & Responsive Interfaces",
+    skills: ["Tailwind CSS", "Blade Views", "HTML/CSS", "React", "Next.js"],
   },
   {
+    num: "04",
     title: "Tools & Environment",
-    icon: Terminal,
-    description: "Peralatan yang digunakan sehari-hari untuk produktivitas kerja.",
-    skills: ["Git & GitHub", "Windows 11", "VS Code", "Postman", "Laragon"],
+    subtitle: "Workflow & Development Stack",
+    skills: ["Git & GitHub", "VS Code", "Laragon"],
   },
 ];
 
 export function SkillsSection() {
   return (
-    <section id="keahlian" className="relative py-24 px-6 lg:px-12 bg-brand-bg overflow-hidden">
-      {/* Background grid + glow — posisi kiri-atas, beda dari Hero (kiri-atas juga tapi lebih redup) dan About (kanan-bawah) supaya tiap section punya nuansa sendiri tanpa berasa acak */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--brand-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--brand-border)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30" />
-      <div className="pointer-events-none absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-brand-accent/5 blur-[120px]" />
+    <section id="keahlian" className="relative overflow-hidden bg-brand-bg px-6 py-28 lg:px-12">
+      {/* 1. Atmospheric Ambient Lighting Layers (Harmonized with Hero, About & Contact) */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[550px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-accent/8 blur-[150px]" />
+      <div className="pointer-events-none absolute bottom-0 left-1/2 h-[260px] w-[380px] -translate-x-1/2 rounded-full bg-brand-warm/[0.03] blur-[130px]" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto">
-        {/* Eyebrow + Judul */}
+      {/* 2. Grid Background with Radial Vignette Masking */}
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,var(--brand-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--brand-border)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30 [mask-image:radial-gradient(ellipse_80%_60%_at_50%_50%,#000_40%,transparent_95%)]" />
+
+      {/* 3. Subtle Grain Texture */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-screen"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
+        {/* Section Header */}
         <Reveal>
-          <div className="flex flex-col items-center md:items-start mb-16">
-            <div className="inline-flex items-center gap-2 mb-4 rounded-md border border-brand-border bg-brand-surface/70 px-3 py-1.5 font-mono text-xs text-brand-text-muted backdrop-blur-sm">
-              <Code2 className="h-3.5 w-3.5" />
+          <div className="mb-20 flex flex-col items-center md:items-start">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-md border border-brand-border bg-brand-surface/70 px-3 py-1.5 font-mono text-xs text-brand-text-muted backdrop-blur-sm">
+              <Code2 className="h-3.5 w-3.5 text-brand-accent" />
               <span>keahlian --teknis</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-brand-text tracking-tight">
-              Teknologi & <span className="text-brand-accent">Peralatan</span>
+            <h2 className="text-3xl font-extrabold tracking-tight text-brand-text sm:text-4xl md:text-5xl">
+              Keahlian & <span className="text-brand-accent">Spesialisasi Teknis</span>
             </h2>
+            <p className="mt-3 max-w-2xl text-base text-brand-text-muted">
+              Daftar teknologi, bahasa pemrograman, dan tools yang digunakan dalam merancang dan mengembangkan sistem web fungsional.
+            </p>
           </div>
         </Reveal>
 
-        {/* Grid Kartu Keahlian */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {SKILLS_DATA.map((category, index) => (
+        {/* Editorial Rows Technical Showcase (NO CARDS) */}
+        <div className="flex flex-col border-b border-brand-border/70">
+          {SKILL_CATEGORIES.map((category, index) => (
             <Reveal key={category.title} delay={0.15 + index * 0.1}>
-              <div className="group relative flex flex-col h-full rounded-2xl bg-brand-surface/40 border border-brand-border p-8 overflow-hidden transition-all duration-300 hover:border-brand-accent/40 hover:bg-brand-surface/80 hover:-translate-y-1">
-                {/* Header Kartu */}
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-accent/10 border border-brand-accent/20 text-brand-accent transition-colors duration-300 group-hover:bg-brand-accent group-hover:text-brand-bg">
-                    <category.icon className="h-6 w-6" />
+              <div className="group relative border-t border-brand-border/70 py-10 sm:py-12 transition-all duration-500 hover:border-brand-accent/50">
+                {/* Subtle Row Hover Atmosphere */}
+                <div className="pointer-events-none absolute inset-0 -mx-4 rounded-2xl bg-brand-surface/0 transition-colors duration-500 group-hover:bg-brand-surface/30 sm:-mx-6" />
+
+                <div className="relative grid grid-cols-1 items-start gap-6 lg:grid-cols-12 lg:gap-10">
+                  {/* Left: Index & Category Title */}
+                  <div className="flex flex-col lg:col-span-5">
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-xs font-bold uppercase tracking-wider text-brand-accent">
+                        // {category.num}
+                      </span>
+                      <span className="h-px w-8 bg-brand-border transition-all duration-500 group-hover:w-12 group-hover:bg-brand-accent/50" />
+                    </div>
+
+                    <h3 className="mt-2 text-2xl font-bold tracking-tight text-brand-text transition-colors duration-300 group-hover:text-brand-accent sm:text-3xl">
+                      {category.title}
+                    </h3>
+                    <p className="mt-1 font-mono text-xs text-brand-text-muted">
+                      {category.subtitle}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-brand-text tracking-wide">
-                    {category.title}
-                  </h3>
+
+                  {/* Right: Technical Typography Tag Cluster */}
+                  <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 lg:col-span-7 lg:pt-2">
+                    {category.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="group/skill relative inline-flex items-center gap-2 rounded-full border border-brand-border/80 bg-brand-surface/40 px-4 py-2 font-mono text-xs sm:text-sm font-medium text-brand-text/90 backdrop-blur-sm transition-all duration-300 hover:border-brand-accent/60 hover:bg-brand-accent/10 hover:text-brand-accent hover:shadow-[0_0_20px_rgba(91,127,166,0.18)] hover:-translate-y-0.5 select-none"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-brand-accent/50 transition-colors group-hover/skill:bg-brand-accent" />
+                        <span>{skill}</span>
+                      </span>
+                    ))}
+                  </div>
                 </div>
-
-                <p className="text-sm text-brand-text-muted mb-8 leading-relaxed">
-                  {category.description}
-                </p>
-
-                {/* Daftar Tech Stack */}
-                <div className="flex flex-wrap gap-2.5 mt-auto">
-                  {category.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1.5 text-xs font-semibold tracking-wide rounded-lg bg-brand-bg border border-brand-border text-brand-text-muted transition-colors duration-300 group-hover:border-brand-accent/40 group-hover:text-brand-accent"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Corner mark — konsisten dengan signature elemen di Hero & badge sertifikasi About */}
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="absolute right-4 top-4 text-brand-accent/30">
-                  <path d="M1 1H6" stroke="currentColor" strokeWidth="1.2" />
-                  <path d="M1 1V6" stroke="currentColor" strokeWidth="1.2" />
-                </svg>
               </div>
             </Reveal>
           ))}

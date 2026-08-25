@@ -6,7 +6,7 @@ import { SkillsSection } from "@/components/sections/SkillsSection";
 
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-screen bg-white dark:bg-neutral-950">
+    <main className="flex flex-col min-h-screen bg-brand-bg text-brand-text">
       <HeroSection />
       <AboutSection />
       <SkillsSection />

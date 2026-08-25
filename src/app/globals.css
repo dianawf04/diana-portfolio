@@ -142,9 +142,34 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-brand-bg text-brand-text;
   }
   html {
     @apply font-sans;
   }
+}
+
+@keyframes draw-underline {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-underline {
+  animation: draw-underline 0.9s 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes ambient-pulse {
+  0%, 100% {
+    opacity: 0.65;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.03);
+  }
+}
+
+.animate-ambient-pulse {
+  animation: ambient-pulse 7s ease-in-out infinite;
 }

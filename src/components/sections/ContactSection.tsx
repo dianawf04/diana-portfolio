@@ -1,195 +1,147 @@
 "use client";
 
+import { useState } from "react";
 import { Reveal } from "@/components/animations/Reveal";
-import { Mail, Send, MapPin, Clock } from "lucide-react";
+import { Mail, ArrowUpRight, Copy, Check, Sparkles } from "lucide-react";
 import { DATA } from "@/config/data";
 
-const WhatsappIcon = ({ className }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className={className}
-  >
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+const GithubIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+    <path d="M9 18c-4.51 2-5-2-7-2" />
   </svg>
 );
 
-const waLink = `https://wa.me/${DATA.contact.whatsapp.replace(/\D/g, "")}`;
+const LinkedinIcon = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
 
 export function ContactSection() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(DATA.contact.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <section
       id="kontak"
-      className="relative overflow-hidden bg-brand-bg px-6 py-24 lg:px-12"
+      className="relative overflow-hidden bg-brand-bg px-6 py-32 lg:px-12 lg:py-40"
     >
-      {/* Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--brand-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--brand-border)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30" />
+      {/* 1. Atmospheric Ambient Lighting Layers */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[550px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-accent/10 blur-[150px]" />
+      <div className="pointer-events-none absolute bottom-0 left-1/2 h-[280px] w-[380px] -translate-x-1/2 rounded-full bg-brand-warm/[0.03] blur-[130px]" />
 
-      {/* Glow */}
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-brand-accent/6 blur-[130px]" />
+      {/* 2. Grid Background with Radial Vignette Masking */}
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,var(--brand-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--brand-border)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30 [mask-image:radial-gradient(ellipse_80%_60%_at_50%_50%,#000_40%,transparent_95%)]" />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center">
-        {/* Header */}
+      {/* 3. Subtle Grain Texture */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-screen"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center text-center">
+        {/* Eyebrow */}
         <Reveal>
-          <div className="mx-auto mb-16 flex max-w-2xl flex-col items-center text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-md border border-brand-border bg-brand-surface/70 px-3 py-1.5 font-mono text-xs text-brand-text-muted backdrop-blur-sm">
-              <span>hubungi --saya</span>
-            </div>
-
-            <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-brand-text md:text-5xl">
-              Mari Bangun Sesuatu yang{" "}
-              <span className="text-brand-accent">Luar Biasa</span> Bersama
-            </h2>
-
-            <p className="text-base text-brand-text-muted md:text-lg">
-              Punya ide proyek, pertanyaan, atau ingin bekerja sama? Kirimkan
-              pesan Anda di bawah ini dan saya akan merespons secepatnya!
-            </p>
+          <div className="mb-6 inline-flex items-center gap-2 rounded-md border border-brand-border bg-brand-surface/70 px-3.5 py-1.5 font-mono text-xs font-semibold tracking-wider text-brand-text-muted backdrop-blur-sm">
+            <Sparkles className="h-3.5 w-3.5 text-brand-accent" />
+            <span className="uppercase">TERBUKA UNTUK PELUANG</span>
           </div>
         </Reveal>
 
-        {/* Main Content */}
-        <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
-          {/* Contact Information */}
-          <div className="flex flex-col gap-4 lg:col-span-5">
-            {/* Email */}
-            <Reveal delay={0.15}>
-              <a
-                href={`mailto:${DATA.contact.email}`}
-                className="group flex w-full items-center gap-6 rounded-2xl border border-brand-border bg-brand-surface/40 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-accent/40 hover:bg-brand-surface/80"
-              >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-accent/10 text-brand-accent transition-colors duration-300 group-hover:bg-brand-accent group-hover:text-brand-bg">
-                  <Mail className="h-5 w-5" />
-                </div>
+        {/* Heading */}
+        <Reveal delay={0.1}>
+          <h2 className="text-4xl font-extrabold tracking-tight text-brand-text sm:text-5xl md:text-6xl lg:text-7xl">
+            Mari <span className="text-brand-accent">Terhubung.</span>
+          </h2>
+        </Reveal>
 
-                <div className="min-w-0">
-                  <p className="mb-1 text-xs font-medium text-brand-text-muted">
-                    Email Langsung
-                  </p>
+        {/* Description */}
+        <Reveal delay={0.18}>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-brand-text-muted sm:text-lg md:text-xl">
+            Saya terbuka untuk peluang kerja dan kolaborasi mengenai pengembangan website maupun sistem informasi.
+          </p>
+        </Reveal>
 
-                  <p className="break-all text-sm font-bold text-brand-text sm:text-base">
-                    {DATA.contact.email}
-                  </p>
-                </div>
-              </a>
-            </Reveal>
+        {/* Primary CTA: Email Action */}
+        <Reveal delay={0.25}>
+          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            {/* Direct Gmail Compose Button */}
+            <a
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${DATA.contact.email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-brand-accent px-8 py-4 font-mono text-sm font-bold text-brand-bg shadow-[0_0_30px_rgba(91,127,166,0.3)] transition-all duration-300 hover:bg-brand-accent-hover hover:shadow-[0_0_45px_rgba(91,127,166,0.45)] hover:scale-[1.02] active:scale-[0.98] sm:text-base"
+            >
+              <Mail className="h-4 w-4 transition-transform group-hover:scale-110 sm:h-5 sm:w-5" />
+              <span>Kirim Email</span>
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 sm:h-5 sm:w-5" />
+            </a>
 
-            {/* WhatsApp */}
-            <Reveal delay={0.22}>
-              <a
-                href={waLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex w-full items-center gap-6 rounded-2xl border border-brand-border bg-brand-surface/40 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-accent/40 hover:bg-brand-surface/80"
-              >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-accent/10 text-brand-accent transition-colors duration-300 group-hover:bg-brand-accent group-hover:text-brand-bg">
-                  <WhatsappIcon className="h-6 w-6" />
-                </div>
-
-                <div>
-                  <p className="mb-1 text-xs font-medium text-brand-text-muted">
-                    WhatsApp
-                  </p>
-
-                  <p className="text-sm font-bold text-brand-text sm:text-base">
-                    {DATA.contact.whatsapp}
-                  </p>
-                </div>
-              </a>
-            </Reveal>
+            {/* Quick Copy Email Pill */}
+            <button
+              onClick={handleCopyEmail}
+              type="button"
+              className="group inline-flex items-center gap-2 rounded-2xl border border-brand-border bg-brand-surface/60 px-5 py-4 font-mono text-xs font-medium text-brand-text-muted backdrop-blur-sm transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-surface hover:text-brand-text sm:text-sm"
+              title="Salin alamat email"
+            >
+              {copied ? (
+                <>
+                  <Check className="h-4 w-4 text-green-400" />
+                  <span className="text-green-400 font-semibold">Tersalin!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="h-4 w-4 text-brand-accent transition-transform group-hover:scale-110" />
+                  <span>{DATA.contact.email}</span>
+                </>
+              )}
+            </button>
           </div>
+        </Reveal>
 
-          {/* Contact Form */}
-          <div className="lg:col-span-7">
-            <Reveal delay={0.25}>
-              <form
-                onSubmit={(e) => e.preventDefault()}
-                className="flex h-full flex-col gap-6 rounded-3xl border border-brand-border bg-brand-surface/50 p-8 shadow-[0_0_30px_rgba(0,0,0,0.4)]"
-              >
-                {/* Name & Email */}
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                  {/* Name */}
-                  <div className="flex flex-col gap-2">
-                    <label
-                      htmlFor="name"
-                      className="text-xs font-bold uppercase tracking-wider text-brand-text-muted"
-                    >
-                      Nama Anda
-                    </label>
+        {/* Divider */}
+        <Reveal delay={0.3}>
+          <div className="my-14 h-px w-24 bg-gradient-to-r from-transparent via-brand-border to-transparent sm:w-32" />
+        </Reveal>
 
-                    <input
-                      type="text"
-                      id="name"
-                      placeholder="Contoh: John Doe"
-                      className="w-full rounded-xl border border-brand-border bg-brand-bg/60 px-4 py-3.5 text-sm text-brand-text placeholder-brand-text-muted/60 transition-colors focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-                    />
-                  </div>
+        {/* Social / Professional Links */}
+        <Reveal delay={0.35}>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {/* LinkedIn */}
+            <a
+              href={DATA.contact.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2.5 rounded-xl border border-brand-border bg-brand-surface/40 px-5 py-3 font-mono text-xs font-medium text-brand-text/90 backdrop-blur-sm transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-surface hover:text-brand-accent hover:shadow-[0_0_20px_rgba(91,127,166,0.18)] hover:-translate-y-0.5"
+            >
+              <LinkedinIcon className="h-4 w-4 text-brand-accent transition-transform group-hover:scale-110" />
+              <span>LinkedIn</span>
+              <ArrowUpRight className="h-3.5 w-3.5 opacity-50 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
 
-                  {/* Email */}
-                  <div className="flex flex-col gap-2">
-                    <label
-                      htmlFor="email"
-                      className="text-xs font-bold uppercase tracking-wider text-brand-text-muted"
-                    >
-                      Alamat Email
-                    </label>
-
-                    <input
-                      type="email"
-                      id="email"
-                      placeholder="john@example.com"
-                      className="w-full rounded-xl border border-brand-border bg-brand-bg/60 px-4 py-3.5 text-sm text-brand-text placeholder-brand-text-muted/60 transition-colors focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-                    />
-                  </div>
-                </div>
-
-                {/* Subject */}
-                <div className="flex flex-col gap-2">
-                  <label
-                    htmlFor="subject"
-                    className="text-xs font-bold uppercase tracking-wider text-brand-text-muted"
-                  >
-                    Subjek Pesan
-                  </label>
-
-                  <input
-                    type="text"
-                    id="subject"
-                    placeholder="Pengembangan Web / Pertanyaan Proyek"
-                    className="w-full rounded-xl border border-brand-border bg-brand-bg/60 px-4 py-3.5 text-sm text-brand-text placeholder-brand-text-muted/60 transition-colors focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-                  />
-                </div>
-
-                {/* Message */}
-                <div className="flex flex-1 flex-col gap-2">
-                  <label
-                    htmlFor="message"
-                    className="text-xs font-bold uppercase tracking-wider text-brand-text-muted"
-                  >
-                    Pesan Anda
-                  </label>
-
-                  <textarea
-                    id="message"
-                    rows={5}
-                    placeholder="Ceritakan lebih banyak tentang tujuan dan tenggat waktu proyek Anda..."
-                    className="min-h-[150px] h-full w-full resize-none rounded-xl border border-brand-border bg-brand-bg/60 px-4 py-3.5 text-sm text-brand-text placeholder-brand-text-muted/60 transition-colors focus:border-brand-accent focus:outline-none focus:ring-1 focus:ring-brand-accent"
-                  />
-                </div>
-
-                {/* Submit Button */}
-                <button
-                  type="button"
-                  className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-brand-accent py-4 text-sm font-bold text-brand-bg transition-all hover:bg-brand-accent-hover hover:shadow-[0_0_20px_rgba(91,127,166,0.35)] active:scale-[0.98]"
-                >
-                  <Send className="h-4 w-4" />
-                  Kirim Pesan
-                </button>
-              </form>
-            </Reveal>
+            {/* GitHub */}
+            <a
+              href={DATA.contact.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2.5 rounded-xl border border-brand-border bg-brand-surface/40 px-5 py-3 font-mono text-xs font-medium text-brand-text/90 backdrop-blur-sm transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-surface hover:text-brand-accent hover:shadow-[0_0_20px_rgba(91,127,166,0.18)] hover:-translate-y-0.5"
+            >
+              <GithubIcon className="h-4 w-4 text-brand-accent transition-transform group-hover:scale-110" />
+              <span>GitHub</span>
+              <ArrowUpRight className="h-3.5 w-3.5 opacity-50 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
