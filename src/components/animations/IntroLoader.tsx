@@ -1,20 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const BOOT_LINES = ["loading", "preparing", "ready"];
 
+const emptySubscribe = () => () => {};
+
+function getSessionIntroSeen(): boolean {
+  if (typeof window === "undefined") return false;
+  return Boolean(sessionStorage.getItem("intro-seen"));
+}
+
 export function IntroLoader({ children }: { children: React.ReactNode }) {
+  const isAlreadySeen = useSyncExternalStore(
+    emptySubscribe,
+    getSessionIntroSeen,
+    () => false
+  );
   const [visible, setVisible] = useState(true);
-  const [checked, setChecked] = useState(false);
   const [lineIndex, setLineIndex] = useState(0);
 
   useEffect(() => {
-    const seen = sessionStorage.getItem("intro-seen");
-    if (seen) {
-      setVisible(false);
-      setChecked(true);
+    if (sessionStorage.getItem("intro-seen")) {
       return;
     }
 
@@ -27,16 +35,13 @@ export function IntroLoader({ children }: { children: React.ReactNode }) {
       setVisible(false);
     }, 1500);
 
-    setChecked(true);
-
     return () => {
       clearInterval(lineTimer);
       clearTimeout(exitTimer);
     };
   }, []);
 
-  // avoid a flash of the loader on repeat visits within the same session
-  if (checked && !visible && sessionStorage.getItem("intro-seen")) {
+  if (isAlreadySeen || !visible) {
     return <>{children}</>;
   }
 

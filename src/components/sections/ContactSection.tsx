@@ -34,16 +34,24 @@ export function ContactSection() {
       id="kontak"
       className="relative overflow-hidden bg-brand-bg px-6 py-32 lg:px-12 lg:py-40"
     >
-      {/* 1. Atmospheric Ambient Lighting Layers */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[550px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-accent/10 blur-[150px]" />
-      <div className="pointer-events-none absolute bottom-0 left-1/2 h-[280px] w-[380px] -translate-x-1/2 rounded-full bg-brand-warm/[0.03] blur-[130px]" />
+      {/* 1. Singular Strong Focal Ambient Glow */}
+      <div className="animate-float-slow pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[780px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-accent/[0.07] dark:bg-brand-accent/14 blur-[160px]" />
+      <div className="animate-float-reverse pointer-events-none absolute bottom-0 left-1/2 h-[300px] w-[440px] -translate-x-1/2 rounded-full bg-brand-warm/[0.02] dark:bg-brand-warm/[0.035] blur-[140px]" />
 
       {/* 2. Grid Background with Radial Vignette Masking */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,var(--brand-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--brand-border)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30 [mask-image:radial-gradient(ellipse_80%_60%_at_50%_50%,#000_40%,transparent_95%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,var(--brand-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--brand-border)_1px,transparent_1px)] bg-[size:40px_40px] opacity-40 dark:opacity-30 [mask-image:radial-gradient(ellipse_80%_60%_at_50%_50%,#000_40%,transparent_95%)]" />
+
+      {/* Subtle Background Technical Crosshairs */}
+      <div className="pointer-events-none absolute inset-0 select-none overflow-hidden opacity-30 dark:opacity-20 font-mono text-[10px] text-brand-accent/60">
+        <span className="absolute left-[15%] top-[20%]">+</span>
+        <span className="absolute right-[15%] top-[20%]">+</span>
+        <span className="absolute left-[15%] bottom-[20%]">+</span>
+        <span className="absolute right-[15%] bottom-[20%]">+</span>
+      </div>
 
       {/* 3. Subtle Grain Texture */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.025] mix-blend-screen"
+        className="pointer-events-none absolute inset-0 opacity-[0.02] dark:opacity-[0.025] mix-blend-multiply dark:mix-blend-screen"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}
@@ -52,9 +60,9 @@ export function ContactSection() {
       <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center text-center">
         {/* Eyebrow */}
         <Reveal>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-md border border-brand-border bg-brand-surface/70 px-3.5 py-1.5 font-mono text-xs font-semibold tracking-wider text-brand-text-muted backdrop-blur-sm">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-border/90 bg-brand-surface/80 dark:bg-brand-surface/70 px-4 py-1.5 font-mono text-xs font-semibold tracking-wider text-brand-text-muted shadow-[0_2px_10px_rgba(15,23,42,0.04)] dark:shadow-none backdrop-blur-md">
             <Sparkles className="h-3.5 w-3.5 text-brand-accent" />
-            <span className="uppercase">TERBUKA UNTUK PELUANG</span>
+            <span className="uppercase text-brand-text/90">TERBUKA UNTUK PELUANG</span>
           </div>
         </Reveal>
 
@@ -80,7 +88,7 @@ export function ContactSection() {
               href={`https://mail.google.com/mail/?view=cm&fs=1&to=${DATA.contact.email}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-brand-accent px-8 py-4 font-mono text-sm font-bold text-brand-bg shadow-[0_0_30px_rgba(91,127,166,0.3)] transition-all duration-300 hover:bg-brand-accent-hover hover:shadow-[0_0_45px_rgba(91,127,166,0.45)] hover:scale-[1.02] active:scale-[0.98] sm:text-base"
+              className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-brand-accent px-8 py-4 font-mono text-sm font-bold text-white shadow-[0_0_30px_rgba(67,110,155,0.28)] dark:shadow-[0_0_30px_rgba(91,127,166,0.32)] transition-all duration-300 hover:bg-brand-accent-hover hover:shadow-[0_0_45px_rgba(67,110,155,0.4)] dark:hover:shadow-[0_0_45px_rgba(91,127,166,0.48)] hover:scale-[1.02] active:scale-[0.98] sm:text-base"
             >
               <Mail className="h-4 w-4 transition-transform group-hover:scale-110 sm:h-5 sm:w-5" />
               <span>Kirim Email</span>
@@ -91,13 +99,13 @@ export function ContactSection() {
             <button
               onClick={handleCopyEmail}
               type="button"
-              className="group inline-flex items-center gap-2 rounded-2xl border border-brand-border bg-brand-surface/60 px-5 py-4 font-mono text-xs font-medium text-brand-text-muted backdrop-blur-sm transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-surface hover:text-brand-text sm:text-sm"
+              className="group inline-flex items-center gap-2 rounded-2xl border border-brand-border/90 bg-brand-surface/80 dark:bg-brand-surface/60 px-5 py-4 font-mono text-xs font-medium text-brand-text shadow-[0_4px_16px_rgba(15,23,42,0.04)] dark:shadow-none backdrop-blur-md transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-surface hover:text-brand-accent sm:text-sm"
               title="Salin alamat email"
             >
               {copied ? (
                 <>
-                  <Check className="h-4 w-4 text-green-400" />
-                  <span className="text-green-400 font-semibold">Tersalin!</span>
+                  <Check className="h-4 w-4 text-emerald-600 dark:text-green-400" />
+                  <span className="text-emerald-600 dark:text-green-400 font-semibold">Tersalin!</span>
                 </>
               ) : (
                 <>
@@ -111,7 +119,7 @@ export function ContactSection() {
 
         {/* Divider */}
         <Reveal delay={0.3}>
-          <div className="my-14 h-px w-24 bg-gradient-to-r from-transparent via-brand-border to-transparent sm:w-32" />
+          <div className="my-14 h-px w-24 bg-gradient-to-r from-transparent via-brand-border/80 to-transparent sm:w-32" />
         </Reveal>
 
         {/* Social / Professional Links */}
@@ -122,7 +130,7 @@ export function ContactSection() {
               href={DATA.contact.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2.5 rounded-xl border border-brand-border bg-brand-surface/40 px-5 py-3 font-mono text-xs font-medium text-brand-text/90 backdrop-blur-sm transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-surface hover:text-brand-accent hover:shadow-[0_0_20px_rgba(91,127,166,0.18)] hover:-translate-y-0.5"
+              className="group flex items-center gap-2.5 rounded-xl border border-brand-border/90 bg-brand-surface/75 dark:bg-brand-surface/40 px-5 py-3 font-mono text-xs font-medium text-brand-text/90 shadow-[0_2px_12px_rgba(15,23,42,0.04)] dark:shadow-none backdrop-blur-md transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-surface hover:text-brand-accent hover:shadow-[0_0_20px_rgba(91,127,166,0.18)] hover:-translate-y-0.5"
             >
               <LinkedinIcon className="h-4 w-4 text-brand-accent transition-transform group-hover:scale-110" />
               <span>LinkedIn</span>
@@ -134,7 +142,7 @@ export function ContactSection() {
               href={DATA.contact.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2.5 rounded-xl border border-brand-border bg-brand-surface/40 px-5 py-3 font-mono text-xs font-medium text-brand-text/90 backdrop-blur-sm transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-surface hover:text-brand-accent hover:shadow-[0_0_20px_rgba(91,127,166,0.18)] hover:-translate-y-0.5"
+              className="group flex items-center gap-2.5 rounded-xl border border-brand-border/90 bg-brand-surface/75 dark:bg-brand-surface/40 px-5 py-3 font-mono text-xs font-medium text-brand-text/90 shadow-[0_2px_12px_rgba(15,23,42,0.04)] dark:shadow-none backdrop-blur-md transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-surface hover:text-brand-accent hover:shadow-[0_0_20px_rgba(91,127,166,0.18)] hover:-translate-y-0.5"
             >
               <GithubIcon className="h-4 w-4 text-brand-accent transition-transform group-hover:scale-110" />
               <span>GitHub</span>

@@ -34,9 +34,9 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative w-full overflow-hidden bg-brand-bg px-6 py-12 sm:py-14 lg:px-12 border-t border-brand-border/40">
+    <footer className="relative w-full overflow-hidden bg-brand-bg px-6 py-12 sm:py-14 lg:px-12 border-t border-brand-border/60 dark:border-brand-border/40">
       {/* Subtle Bottom Ambient Bloom */}
-      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-[180px] w-[520px] rounded-full bg-brand-accent/5 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-[180px] w-[520px] rounded-full bg-brand-accent/[0.03] dark:bg-brand-accent/5 blur-[120px]" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-8 sm:gap-10">
         {/* Top Row: Identity, Navigation, Social Links */}
@@ -71,7 +71,7 @@ export function Footer() {
               href={DATA.contact.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-brand-border/80 bg-brand-surface/40 text-brand-text-muted transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-surface hover:text-brand-accent hover:shadow-[0_0_16px_rgba(91,127,166,0.18)] hover:-translate-y-0.5"
+              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-brand-border/80 bg-brand-surface/70 dark:bg-brand-surface/40 text-brand-text-muted shadow-[0_2px_8px_rgba(15,23,42,0.04)] dark:shadow-none transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-surface hover:text-brand-accent hover:shadow-[0_0_16px_rgba(91,127,166,0.18)] hover:-translate-y-0.5"
               aria-label="GitHub"
             >
               <GithubIcon className="h-4 w-4" />
@@ -81,7 +81,7 @@ export function Footer() {
               href={DATA.contact.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-brand-border/80 bg-brand-surface/40 text-brand-text-muted transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-surface hover:text-brand-accent hover:shadow-[0_0_16px_rgba(91,127,166,0.18)] hover:-translate-y-0.5"
+              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-brand-border/80 bg-brand-surface/70 dark:bg-brand-surface/40 text-brand-text-muted shadow-[0_2px_8px_rgba(15,23,42,0.04)] dark:shadow-none transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-surface hover:text-brand-accent hover:shadow-[0_0_16px_rgba(91,127,166,0.18)] hover:-translate-y-0.5"
               aria-label="LinkedIn"
             >
               <LinkedinIcon className="h-4 w-4" />
@@ -90,7 +90,7 @@ export function Footer() {
             <a
               href="#"
               onClick={scrollToTop}
-              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-brand-border/80 bg-brand-surface/40 text-brand-text-muted transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-accent hover:text-brand-bg hover:shadow-[0_0_20px_rgba(91,127,166,0.3)] hover:-translate-y-0.5"
+              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl border border-brand-border/80 bg-brand-surface/70 dark:bg-brand-surface/40 text-brand-text-muted shadow-[0_2px_8px_rgba(15,23,42,0.04)] dark:shadow-none transition-all duration-300 hover:border-brand-accent/50 hover:bg-brand-accent hover:text-white hover:shadow-[0_0_20px_rgba(91,127,166,0.3)] hover:-translate-y-0.5"
               aria-label="Kembali ke atas"
             >
               <ArrowUp className="h-4 w-4" />
